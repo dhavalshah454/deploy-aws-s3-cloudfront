@@ -59,6 +59,10 @@ If depending on a named profile in `~/.aws/credentials` for authentication, use 
 
 Never prompt for confirmation. This is particularly useful for automated deployment pipelines.
 
+#### `--cache-control`
+
+Set cache control headers
+
 ## Installation as a `run-script` alias (optional)
 
 Add a `deploy` script alias to your `package.json` file:
