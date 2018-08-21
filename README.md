@@ -1,10 +1,10 @@
-# deploy-aws-s3-cloudfront
+# deploy-aws-s3-cloudfront-with-cache-contol
 
 Syncs a local directory to an AWS S3 bucket, optionally invalidating affected CloudFront paths.
 
 ## Installation
 
-    npm install --save deploy-aws-s3-cloudfront
+    npm install --save deploy-aws-s3-cloudfront-with-cache-contol
 
 ### Authentication
 
@@ -14,7 +14,7 @@ If you are relying on credentials stored in `~/.aws/credentials` you can use the
 
 ## Usage
 
-    deploy-aws-s3-cloudfront --bucket <bucket> [options]
+    deploy-aws-s3-cloudfront-with-cache-contol --bucket <bucket> [options]
 
 ### Options
 
@@ -67,7 +67,7 @@ Add a `deploy` script alias to your `package.json` file:
       ...
       "scripts": {
         ...
-        "deploy": "deploy-aws-s3-cloudfront --bucket my-bucket"
+        "deploy": "deploy-aws-s3-cloudfront-with-cache-contol --bucket my-bucket"
       }
     }
 
@@ -83,7 +83,7 @@ Set the `--source` option to `/.build/`:
       ...
       "scripts": {
         ...
-        "deploy": "deploy-aws-s3-cloudfront --bucket my-bucket --source=./build/"
+        "deploy": "deploy-aws-s3-cloudfront-with-cache-contol --bucket my-bucket --source=./build/"
       }
     }
 
@@ -95,7 +95,7 @@ Alternatively, you can force a build before every deployment:
       ...
       "scripts": {
         ...
-        "deploy": "npm run build && deploy-aws-s3-cloudfront --bucket my-bucket --source=./build/"
+        "deploy": "npm run build && deploy-aws-s3-cloudfront-with-cache-contol --bucket my-bucket --source=./build/"
       }
     }
 

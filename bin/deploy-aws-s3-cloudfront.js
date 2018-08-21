@@ -64,6 +64,10 @@ const argv = yargs
     describe: 'Do not prompt for confirmation',
     default: false,
   })
+  .option('cache-control', {
+    type: 'string',
+    describe: 'Set Cache Contorl headers'
+  })
   .argv;
 
 if (!path.isAbsolute(argv.source)) {
@@ -315,6 +319,10 @@ function deploy(uploads, deletes) {
               ContentType: mimeTypes.lookup(file) || 'application/octet-stream',
               ContentLength: stats.size,
             }, defaults);
+
+            if(argv.cacheControl){
+              params.CacheControl = argv.cacheControl
+            }
 
             console.log(colors.info('Uploading ' + colors.bold(params.Key) + ' (' + prettyBytes(params.ContentLength)  + ') as ' + colors.bold(params.ContentType) + ' to ' + colors.bold(params.Bucket) + '...'));
 

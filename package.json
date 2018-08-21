@@ -1,6 +1,6 @@
 {
-  "name": "deploy-aws-s3-cloudfront",
-  "version": "0.2.9",
+  "name": "deploy-aws-s3-cloudfront-with-cache-contol",
+  "version": "0.0.1",
   "description": "Syncs a local directory to an AWS S3 bucket, optionally invalidating affected CloudFront paths.",
   "keywords": [
     "aws",
@@ -8,15 +8,15 @@
     "cloudfront",
     "deploy"
   ],
-  "homepage": "https://github.com/apancutt/deploy-aws-s3-cloudfront#readme",
+  "homepage": "https://github.com/vinaysawant/deploy-aws-s3-cloudfront#readme",
   "bugs": {
-    "url": "https://github.com/apancutt/deploy-aws-s3-cloudfront/issues"
+    "url": "https://github.com/vinaysawant/deploy-aws-s3-cloudfront/issues"
   },
-  "author": "Adam Pancutt <adam@pancutt.com>",
+  "author": "Vinay Sawant <sawantvinayr@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/apancutt/deploy-aws-s3-cloudfront.git"
+    "url": "git+https://github.com/vinaysawant/deploy-aws-s3-cloudfront.git"
   },
   "bin": "./bin/deploy-aws-s3-cloudfront.js",
   "files": [
