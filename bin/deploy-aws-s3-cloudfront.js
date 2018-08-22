@@ -68,6 +68,10 @@ const argv = yargs
     type: 'string',
     describe: 'Set Cache Contorl headers'
   })
+  .option('index-cache-control', {
+    type: 'string',
+    describe: 'Set Cache Contorl headers for index.html page'
+  })
   .argv;
 
 if (!path.isAbsolute(argv.source)) {
@@ -320,8 +324,10 @@ function deploy(uploads, deletes) {
               ContentLength: stats.size,
             }, defaults);
 
-            if(argv.cacheControl){
-              params.CacheControl = argv.cacheControl
+            if(key === "index.html"){
+              params.CacheControl = argv.indexCachaeControl || 'max-age=0,no-cache,no-store,must-revalidate'
+            }else{
+              params.CacheControl = argv.cacheControl || 'max-age=31536000'
             }
 
             console.log(colors.info('Uploading ' + colors.bold(params.Key) + ' (' + prettyBytes(params.ContentLength)  + ') as ' + colors.bold(params.ContentType) + ' to ' + colors.bold(params.Bucket) + '...'));
