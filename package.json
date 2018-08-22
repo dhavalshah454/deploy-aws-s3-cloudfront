@@ -1,6 +1,6 @@
 {
   "name": "deploy-aws-s3-cloudfront-with-cache-contol",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Syncs a local directory to an AWS S3 bucket, optionally invalidating affected CloudFront paths.",
   "keywords": [
     "aws",
