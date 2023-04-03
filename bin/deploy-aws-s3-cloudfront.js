@@ -70,10 +70,15 @@ const argv = yargs
   })
   .option('index-cache-control', {
     type: 'string',
-    describe: 'Set Cache Contorl headers for index.html page'
+    describe: 'Set Cache Controll headers for index.html page'
+  })
+  .option('compress', {
+    type: 'boolean',
+    describe: 'Upload compressed version of files to S3 wherever possible',
+    default: false
   })
   .argv;
-
+debugger
 if (!path.isAbsolute(argv.source)) {
   argv.source = path.resolve(argv.source);
 }
@@ -312,6 +317,20 @@ function deploy(uploads, deletes) {
             const file = argv.source + key;
             const stats = fs.statSync(file);
             const stream = fs.createReadStream(file);
+            let hasCompressed = false;
+            let indexOfUncompressed = -1;
+            const fileNameWithoutExtension = key.replace(/\.[^/.]+$/, "");
+
+
+            if(argv.compress){
+              if(uploads.indexOf(key+".gz")>-1){
+                return;
+              }
+              indexOfUncompressed = uploads.indexOf(fileNameWithoutExtension);
+              if(indexOfUncompressed > -1){
+                hasCompressed = true;
+              }
+            }
 
             stream.on('error', function(err) {
               throw err;
@@ -324,8 +343,14 @@ function deploy(uploads, deletes) {
               ContentLength: stats.size,
             }, defaults);
 
+            if(hasCompressed){
+              params.Key = argv.destination + fileNameWithoutExtension;
+              params.ContentType = mimeTypes.lookup(argv.source + fileNameWithoutExtension) || 'application/octet-stream';
+              params.ContentEncoding = "gzip"
+            }
+
             if(key === "index.html"){
-              params.CacheControl = argv.indexCachaeControl || 'max-age=0,no-cache,no-store,must-revalidate'
+              params.CacheControl = argv.indexCacheControl || 'max-age=0,no-cache,no-store,must-revalidate'
             }else{
               params.CacheControl = argv.cacheControl || 'max-age=31536000'
             }
