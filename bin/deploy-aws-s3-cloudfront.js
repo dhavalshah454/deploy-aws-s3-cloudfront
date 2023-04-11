@@ -318,16 +318,10 @@ function deploy(uploads, deletes) {
             const stats = fs.statSync(file);
             const stream = fs.createReadStream(file);
             let hasCompressed = false;
-            let indexOfUncompressed = -1;
-            const fileNameWithoutExtension = key.replace(/\.[^/.]+$/, "");
 
 
             if(argv.compress){
-              if(uploads.indexOf(key+".gz")>-1){
-                return;
-              }
-              indexOfUncompressed = uploads.indexOf(fileNameWithoutExtension);
-              if(indexOfUncompressed > -1){
+              if(uploads.indexOf(key + ".gz") > -1){
                 hasCompressed = true;
               }
             }
@@ -344,9 +338,8 @@ function deploy(uploads, deletes) {
             }, defaults);
 
             if(hasCompressed){
-              params.Key = argv.destination + fileNameWithoutExtension;
-              params.ContentType = mimeTypes.lookup(argv.source + fileNameWithoutExtension) || 'application/octet-stream';
-              params.ContentEncoding = "gzip"
+              params.Key += ".gz"; 
+              params.ContentEncoding = "gzip";
             }
 
             if(key === "index.html"){
