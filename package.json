@@ -25,6 +25,7 @@
   "dependencies": {
     "aws-sdk": "^2.192.0",
     "colors": "^1.1.2",
+    "deploy-to-aws-s3-with-invalidation": "^0.0.2-beta.1",
     "fast-glob": "^2.1.0",
     "md5-file": "^3.2.3",
     "mime-types": "^2.1.17",

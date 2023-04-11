@@ -1,10 +1,10 @@
-# deploy-aws-s3-cloudfront-with-cache-contol
+# deploy-to-aws-s3-with-invalidation"
 
 Syncs a local directory to an AWS S3 bucket, optionally invalidating affected CloudFront paths.
 
 ## Installation
 
-    npm install --save deploy-aws-s3-cloudfront-with-cache-contol
+    npm install --save deploy-to-aws-s3-with-invalidation"
 
 ### Authentication
 
@@ -14,7 +14,7 @@ If you are relying on credentials stored in `~/.aws/credentials` you can use the
 
 ## Usage
 
-    deploy-aws-s3-cloudfront-with-cache-contol --bucket <bucket> [options]
+    deploy-to-aws-s3-with-invalidation" --bucket <bucket> [options]
 
 ### Options
 
@@ -71,7 +71,7 @@ Add a `deploy` script alias to your `package.json` file:
       ...
       "scripts": {
         ...
-        "deploy": "deploy-aws-s3-cloudfront-with-cache-contol --bucket my-bucket"
+        "deploy": "deploy-to-aws-s3-with-invalidation --bucket my-bucket"
       }
     }
 
@@ -87,7 +87,7 @@ Set the `--source` option to `/.build/`:
       ...
       "scripts": {
         ...
-        "deploy": "deploy-aws-s3-cloudfront-with-cache-contol --bucket my-bucket --source=./build/"
+        "deploy": "deploy-to-aws-s3-with-invalidation --bucket my-bucket --source=./build/"
       }
     }
 
@@ -99,7 +99,7 @@ Alternatively, you can force a build before every deployment:
       ...
       "scripts": {
         ...
-        "deploy": "npm run build && deploy-aws-s3-cloudfront-with-cache-contol --bucket my-bucket --source=./build/"
+        "deploy": "npm run build && deploy-to-aws-s3-with-invalidation --bucket my-bucket --source=./build/"
       }
     }
 
